@@ -235,235 +235,125 @@
 
 <!-- Firebase Script -->
 <script type="module">
-  // 🔹 Import Firebase core
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-
-  // 🔹 Import Firestore (INI PENTING)
   import {
     getFirestore,
     collection,
     addDoc,
-    getDocs,
-    doc,
-    updateDoc,
-    deleteDoc
+    onSnapshot,
+    serverTimestamp
   } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
-  // 🔹 Firebase config (yang kau dah ada)
+  // Firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyDn8SLqrdo4f6IyD1nUSKmKkkHFcjem7uM",
     authDomain: "bdp-semsira.firebaseapp.com",
     projectId: "bdp-semsira",
     storageBucket: "bdp-semsira.firebasestorage.app",
     messagingSenderId: "784687342761",
-    appId: "1:784687342761:web:f1fe10571b4852c010f5b8",
-    measurementId: "G-LB617YSZ31"
+    appId: "1:784687342761:web:f1fe10571b4852c010f5b8"
   };
 
-  // 🔹 Initialize Firebase
+  // Init
   const app = initializeApp(firebaseConfig);
-
-  // 🔹 Initialize Firestore
   const db = getFirestore(app);
 
-  // 🔹 Export (kalau guna fail berasingan)
-  window.db = db;
-  window.collection = collection;
-  window.addDoc = addDoc;
-  window.getDocs = getDocs;
-  window.doc = doc;
-  window.updateDoc = updateDoc;
-  window.deleteDoc = deleteDoc;
-</script>
+  /* =======================
+     KEY IN KES
+  ======================= */
+  const form = document.getElementById("disciplineForm");
+  const msg = document.getElementById("msg");
 
-// Key in kes disiplin
-const form = document.getElementById("disciplineForm");
-const msg = document.getElementById("msg");
-form.addEventListener("submit", async e=>{
-  e.preventDefault();
-  try{
-    await addDoc(collection(db,"kesDisiplin"),{
-      kelas: document.getElementById("kelas").value,
-      kategori: document.getElementById("kategori").value,
-      jenis: document.getElementById("jenis").value,
-      nama: document.getElementById("nama").value,
-      tarikh: new Date()
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    await addDoc(collection(db, "kesDisiplin"), {
+      kelas: kelas.value,
+      kategori: kategori.value,
+      jenis: jenis.value,
+      nama: nama.value,
+      tarikh: serverTimestamp()
     });
-    msg.innerText="✅ Kes berjaya direkod!";
+    msg.innerText = "✅ Kes berjaya direkod";
     form.reset();
-  }catch(err){
-    msg.innerText="❌ Ralat berlaku!";
-    console.error(err);
+  });
+
+  /* =======================
+     STATISTIK
+  ======================= */
+  const barCtx = document.getElementById("barChart");
+  const pieCtx = document.getElementById("pieChart");
+  let barChart, pieChart;
+  let allData = [];
+
+  function updateCharts(data) {
+    const kelasData = {};
+    const total = { Ringan:0, Sederhana:0, Berat:0 };
+
+    data.forEach(d => {
+      if(!kelasData[d.kelas])
+        kelasData[d.kelas] = { Ringan:0, Sederhana:0, Berat:0 };
+
+      kelasData[d.kelas][d.kategori]++;
+      total[d.kategori]++;
+    });
+
+    const labels = Object.keys(kelasData);
+
+    if(barChart) barChart.destroy();
+    barChart = new Chart(barCtx, {
+      type:'bar',
+      data:{
+        labels,
+        datasets:[
+          { label:'Ringan', data:labels.map(l=>kelasData[l].Ringan) },
+          { label:'Sederhana', data:labels.map(l=>kelasData[l].Sederhana) },
+          { label:'Berat', data:labels.map(l=>kelasData[l].Berat) }
+        ]
+      },
+      options:{ responsive:true, scales:{ y:{ beginAtZero:true } } }
+    });
+
+    if(pieChart) pieChart.destroy();
+    pieChart = new Chart(pieCtx, {
+      type:'pie',
+      data:{
+        labels:['Ringan','Sederhana','Berat'],
+        datasets:[{ data:[total.Ringan,total.Sederhana,total.Berat] }]
+      }
+    });
   }
-});
 
-// Statistik realtime
-const barCtx = document.getElementById("barChart").getContext("2d");
-const pieCtx = document.getElementById("pieChart").getContext("2d");
-let barChart, pieChart;
+  /* =======================
+     FILTER
+  ======================= */
+  const monthFilter = document.getElementById("monthFilter");
+  const weekFilter = document.getElementById("weekFilter");
 
-onSnapshot(collection(db,"kesDisiplin"), snap=>{
-  const data = {};
-  let total = {Ringan:0,Sederhana:0,Berat:0};
+  function applyFilter(){
+    let filtered = [...allData];
 
-  snap.forEach(doc=>{
-    const d = doc.data();
-    const kls = d.kelas;
-    const kat = d.kategori;
-    if(!data[kls]) data[kls]={Ringan:0,Sederhana:0,Berat:0};
-    data[kls][kat]++;
-    total[kat]++;
-  });
-
-  // Bar Chart per kelas
-  const labels = Object.keys(data);
-  const ringan = labels.map(l=>data[l].Ringan);
-  const sederhana = labels.map(l=>data[l].Sederhana);
-  const berat = labels.map(l=>data[l].Berat);
-
-  if(barChart) barChart.destroy();
-  barChart = new Chart(barCtx,{
-    type:'bar',
-    data:{
-      labels:labels,
-      datasets:[
-        {label:'Ringan', data:ringan, backgroundColor:'#ffc107'},
-        {label:'Sederhana', data:sederhana, backgroundColor:'#dc3545'},
-        {label:'Berat', data:berat, backgroundColor:'#343a40'}
-      ]
-    },
-    options:{
-      responsive:true,
-      plugins:{legend:{position:'top'}},
-      scales:{y:{beginAtZero:true}}
-    }
-  });
-
-  // Pie Chart overall
-  if(pieChart) pieChart.destroy();
-  pieChart = new Chart(pieCtx,{
-    type:'pie',
-    data:{
-      labels:['Ringan','Sederhana','Berat'],
-      datasets:[{data:[total.Ringan,total.Sederhana,total.Berat],backgroundColor:['#ffc107','#dc3545','#343a40']}]
-    },
-    options:{responsive:true}
-  });
-});
-  // Tambah di script Firebase & chart sebelum ini
-
-const monthFilter = document.getElementById("monthFilter");
-const weekFilter = document.getElementById("weekFilter");
-const resetFilter = document.getElementById("resetFilter");
-
-function filterData(docs){
-  let filtered = [];
-  const monthVal = monthFilter.value;
-  const weekVal = weekFilter.value;
-
-  docs.forEach(doc=>{
-    const data = doc.data();
-    const tarikh = data.tarikh.toDate(); // convert Firestore Timestamp ke Date
-
-    let include = true;
-
-    // Filter bulan
-    if(monthVal){
-      const [y,m] = monthVal.split('-').map(Number);
-      include = include && (tarikh.getFullYear() === y && tarikh.getMonth()+1 === m);
+    if(monthFilter.value){
+      const [y,m] = monthFilter.value.split("-");
+      filtered = filtered.filter(d=>{
+        const t = d.tarikh.toDate();
+        return t.getFullYear()==y && t.getMonth()+1==m;
+      });
     }
 
-    // Filter minggu
-    if(weekVal){
-      const [y,w] = weekVal.split('-W').map(Number);
-      const startOfWeek = new Date(y,0,1 + (w-1)*7);
-      const endOfWeek = new Date(startOfWeek);
-      endOfWeek.setDate(startOfWeek.getDate()+6);
-      include = include && (tarikh >= startOfWeek && tarikh <= endOfWeek);
-    }
-
-    if(include) filtered.push(data);
-  });
-
-  return filtered;
-}
-
-function updateCharts(filteredData){
-  const data = {};
-  let total = {Ringan:0,Sederhana:0,Berat:0};
-
-  filteredData.forEach(d=>{
-    const kls = d.kelas;
-    const kat = d.kategori;
-    if(!data[kls]) data[kls]={Ringan:0,Sederhana:0,Berat:0};
-    data[kls][kat]++;
-    total[kat]++;
-  });
-
-  const labels = Object.keys(data);
-  const ringan = labels.map(l=>data[l].Ringan);
-  const sederhana = labels.map(l=>data[l].Sederhana);
-  const berat = labels.map(l=>data[l].Berat);
-
-  if(barChart) barChart.destroy();
-  barChart = new Chart(barCtx,{
-    type:'bar',
-    data:{
-      labels:labels,
-      datasets:[
-        {label:'Ringan', data:ringan, backgroundColor:'#ffc107'},
-        {label:'Sederhana', data:sederhana, backgroundColor:'#dc3545'},
-        {label:'Berat', data:berat, backgroundColor:'#343a40'}
-      ]
-    },
-    options:{ responsive:true, plugins:{legend:{position:'top'}}, scales:{y:{beginAtZero:true}} }
-  });
-
-  if(pieChart) pieChart.destroy();
-  pieChart = new Chart(pieCtx,{
-    type:'pie',
-    data:{
-      labels:['Ringan','Sederhana','Berat'],
-      datasets:[{data:[total.Ringan,total.Sederhana,total.Berat],backgroundColor:['#ffc107','#dc3545','#343a40']}]
-    },
-    options:{responsive:true}
-  });
-}
-
-// Snapshot Firestore
-onSnapshot(collection(db,"kesDisiplin"), snap=>{
-  const docs = snap.docs;
-  const filtered = filterData(docs);
-  updateCharts(filtered);
-});
-
-// Event listener filter
-monthFilter.addEventListener("change",()=>{ 
-  weekFilter.value=''; // clear week
-  onSnapshot(collection(db,"kesDisiplin"), snap=>{
-    const docs = snap.docs;
-    const filtered = filterData(docs);
     updateCharts(filtered);
-  });
-});
+  }
 
-weekFilter.addEventListener("change",()=>{ 
-  monthFilter.value=''; // clear month
-  onSnapshot(collection(db,"kesDisiplin"), snap=>{
-    const docs = snap.docs;
-    const filtered = filterData(docs);
-    updateCharts(filtered);
-  });
-});
+  monthFilter.onchange = ()=>{ weekFilter.value=""; applyFilter(); };
+  weekFilter.onchange = ()=>{ monthFilter.value=""; applyFilter(); };
 
-resetFilter.addEventListener("click",()=>{
-  monthFilter.value='';
-  weekFilter.value='';
+  /* =======================
+     REALTIME FIRESTORE
+  ======================= */
   onSnapshot(collection(db,"kesDisiplin"), snap=>{
-    const docs = snap.docs;
-    updateCharts(docs.map(d=>d.data()));
+    allData = snap.docs.map(d=>d.data());
+    applyFilter();
   });
-});
+
 
 </script>
 </body>
