@@ -15,111 +15,18 @@
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f4f6f9;
-    }
-
-    header {
-      background: linear-gradient(135deg, #004080, #0066cc);
-      color: white;
-      padding: 70px 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-weight: 700;
-      font-size: 2.6rem;
-    }
-
-    header p {
-      letter-spacing: 1px;
-      opacity: 0.9;
-    }
-
-    section {
-      padding: 70px 20px;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      margin-bottom: 40px;
-      text-align: center;
-      color: #004080;
-    }
-
-    .card {
-      border: none;
-      border-radius: 16px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transition: transform 0.3s;
-      height: 100%;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-    }
-
-    .mpp-member img {
-      width: 130px;
-      height: 130px;
-      object-fit: cover;
-      margin: 20px auto 10px;
-    }
-
-    .btn-main {
-      background: #004080;
-      color: white;
-      font-weight: 600;
-      padding: 12px 26px;
-      border-radius: 30px;
-      text-decoration: none;
-    }
-
-    .btn-main:hover {
-      background: #0066cc;
-      color: white;
-    }
-
-    footer {
-      background: #004080;
-      color: white;
-      padding: 25px 10px;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-
-    /* Countdown */
-    .flip {
-      display: inline-block;
-      background: #004080;
-      color: white;
-      padding: 15px;
-      margin: 6px;
-      font-size: 1.8rem;
-      font-weight: bold;
-      border-radius: 10px;
-      min-width: 70px;
-    }
-
-    /* Back to top */
-    #backToTopBtn {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #004080;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      padding: 12px 16px;
-      display: none;
-      z-index: 999;
-    }
-
-    #backToTopBtn:hover {
-      background: #0066cc;
-    }
+    body{font-family:'Poppins',sans-serif;background:#f4f6f9}
+    header{background:linear-gradient(135deg,#004080,#0066cc);color:#fff;padding:70px 20px;text-align:center}
+    section{padding:70px 20px}
+    .section-title{font-family:'Playfair Display',serif;font-size:2.2rem;margin-bottom:40px;text-align:center;color:#004080}
+    .card{border:none;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.08);transition:.3s}
+    .card:hover{transform:translateY(-6px)}
+    .mpp-member img{width:130px;height:130px;object-fit:cover;margin:20px auto 10px}
+    .btn-main{background:#004080;color:#fff;font-weight:600;padding:12px 26px;border-radius:30px;text-decoration:none}
+    .btn-main:hover{background:#0066cc;color:#fff}
+    footer{background:#004080;color:#fff;padding:25px 10px;text-align:center;font-size:.9rem}
+    .flip{background:#004080;color:#fff;padding:15px;margin:6px;font-size:1.8rem;font-weight:700;border-radius:10px;min-width:70px;display:inline-block}
+    #backToTopBtn{position:fixed;bottom:30px;right:30px;background:#004080;color:#fff;border:none;border-radius:50%;padding:12px 16px;display:none;z-index:999}
   </style>
 </head>
 
@@ -138,114 +45,89 @@
         <li class="nav-item"><a class="nav-link" href="#members">Members</a></li>
         <li class="nav-item"><a class="nav-link" href="#rules">Rules</a></li>
         <li class="nav-item"><a class="nav-link" href="#mission">Mission</a></li>
-        <li class="nav-item">
-          <a class="nav-link" target="_blank" href="https://adam007-bit.github.io/PORTAL-E-ADUAN-MPP/">Complaint</a>
-        </li>
+        <li class="nav-item"><a class="nav-link" target="_blank" href="https://adam007-bit.github.io/PORTAL-E-ADUAN-MPP/">Complaint</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- HEADER -->
 <header id="home">
   <h1>PORTAL RASMI BDP SEMSIRA</h1>
   <p>BADAN DISIPLIN PELAJAR</p>
 </header>
 
 <!-- COUNTDOWN -->
-<section class="text-center">
+<section class="text-center" data-aos="fade-up">
   <h2 class="section-title">📅 Countdown STPM</h2>
-  <div>
-    <span class="flip" id="days">00</span>
-    <span class="flip" id="hours">00</span>
-    <span class="flip" id="minutes">00</span>
-    <span class="flip" id="seconds">00</span>
-  </div>
+  <span class="flip" id="days">00</span>
+  <span class="flip" id="hours">00</span>
+  <span class="flip" id="minutes">00</span>
+  <span class="flip" id="seconds">00</span>
+</section>
+
+<!-- MOTO -->
+<section style="background:#eef4ff" data-aos="zoom-in">
+  <h2 class="section-title">🏫 Moto Rasmi BDP</h2>
+  <p class="text-center fs-3 fw-bold text-primary">
+    “DISIPLIN TERAS KEJAYAAN”
+  </p>
 </section>
 
 <!-- MEMBERS -->
-<section id="members">
+<section id="members" data-aos="fade-up">
   <h2 class="section-title">AHLI JAWATANKUASA BDP</h2>
   <div class="container">
     <div class="row g-4 justify-content-center">
-
       <div class="col-md-3">
         <div class="card text-center p-3 mpp-member">
           <img src="images/nur.png" class="rounded-circle">
-          <h5 class="fw-bold mt-2">NUR ZAKWAN</h5>
+          <h5 class="fw-bold">NUR ZAKWAN</h5>
           <p>Pengerusi</p>
         </div>
       </div>
-
       <div class="col-md-3">
         <div class="card text-center p-3 mpp-member">
           <img src="images/1.png" class="rounded-circle">
-          <h5 class="fw-bold mt-2">MUHAMMAD NUR ZAKWAN</h5>
+          <h5 class="fw-bold">MUHAMMAD NUR ZAKWAN</h5>
           <p>Timbalan Pengerusi</p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- RULES -->
-<section id="rules" style="background:#ffffff;">
+<section id="rules" style="background:#fff" data-aos="fade-up">
   <h2 class="section-title">📘 Peraturan & Tatatertib</h2>
   <div class="container">
     <div class="row g-4">
+      <div class="col-md-4"><div class="card p-4"><h5>Kesalahan Ringan</h5><ul><li>Lewat hadir</li><li>Pakaian tidak kemas</li></ul></div></div>
+      <div class="col-md-4"><div class="card p-4"><h5>Kesalahan Sederhana</h5><ul><li>Ponteng</li><li>Bising</li></ul></div></div>
+      <div class="col-md-4"><div class="card p-4"><h5>Kesalahan Berat</h5><ul><li>Buli</li><li>Vape</li></ul></div></div>
+    </div>
+  </div>
+</section>
 
-      <div class="col-md-4">
-        <div class="card p-4">
-          <h5 class="fw-bold text-warning">Kesalahan Ringan</h5>
-          <ul>
-            <li>Lewat hadir</li>
-            <li>Pakaian tidak kemas</li>
-            <li>Tidak membawa buku</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card p-4">
-          <h5 class="fw-bold text-danger">Kesalahan Sederhana</h5>
-          <ul>
-            <li>Ponteng kelas</li>
-            <li>Bising</li>
-            <li>Tidak hormat guru</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card p-4">
-          <h5 class="fw-bold text-dark">Kesalahan Berat</h5>
-          <ul>
-            <li>Buli</li>
-            <li>Merokok / Vape</li>
-          </ul>
-        </div>
-      </div>
-
+<!-- STATISTIK -->
+<section data-aos="fade-up">
+  <h2 class="section-title">📊 Statistik Disiplin</h2>
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-md-4"><div class="card p-4"><h3>42</h3><p>Lewat Hadir</p></div></div>
+      <div class="col-md-4"><div class="card p-4"><h3>18</h3><p>Ponteng</p></div></div>
+      <div class="col-md-4"><div class="card p-4"><h3>3</h3><p>Kes Berat</p></div></div>
     </div>
   </div>
 </section>
 
 <!-- MISSION -->
-<section id="mission">
+<section id="mission" data-aos="fade-up">
   <h2 class="section-title">🎯 Misi & Visi</h2>
   <div class="container text-center">
-    <p>
-      ✔️ Memupuk disiplin dan integriti pelajar<br>
-      ✔️ Membantu penguatkuasaan peraturan<br>
-      ✔️ Melahirkan pelajar bertanggungjawab
-    </p>
-    <p class="mt-4 fw-semibold">
-      Melahirkan pelajar SEMSIRA yang berdisiplin, berakhlak mulia dan menjadi contoh teladan.
-    </p>
-
+    <p>✔️ Memupuk disiplin ✔️ Penguatkuasaan adil ✔️ Pelajar bertanggungjawab</p>
+    <p class="fw-semibold mt-3">Melahirkan pelajar SEMSIRA berakhlak & berdisiplin.</p>
     <a href="https://adam007-bit.github.io/PORTAL-E-ADUAN-MPP/" class="btn-main mt-4 d-inline-block">
-      ➡️ Portal Aduan Pelajar
+      ➡️ Portal Aduan
     </a>
   </div>
 </section>
@@ -257,22 +139,22 @@
 
 <button id="backToTopBtn">↑</button>
 
-<script>
-  const eventDate = new Date("2026-01-13").getTime();
-  setInterval(()=>{
-    const now = new Date().getTime();
-    const d = eventDate - now;
-    document.getElementById("days").innerText = Math.floor(d/86400000);
-    document.getElementById("hours").innerText = Math.floor(d/3600000)%24;
-    document.getElementById("minutes").innerText = Math.floor(d/60000)%60;
-    document.getElementById("seconds").innerText = Math.floor(d/1000)%60;
-  },1000);
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init();</script>
 
-  const btn=document.getElementById("backToTopBtn");
-  window.onscroll=()=>btn.style.display=window.scrollY>300?"block":"none";
-  btn.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
+<script>
+const eventDate=new Date("2026-01-13").getTime();
+setInterval(()=>{const n=new Date().getTime(),d=eventDate-n;
+days.innerText=Math.floor(d/864e5);
+hours.innerText=Math.floor(d/36e5)%24;
+minutes.innerText=Math.floor(d/6e4)%60;
+seconds.innerText=Math.floor(d/1e3)%60},1000);
+
+const btn=document.getElementById("backToTopBtn");
+window.onscroll=()=>btn.style.display=window.scrollY>300?"block":"none";
+btn.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
