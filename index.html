@@ -7,29 +7,36 @@
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-
   <!-- AOS -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <style>
-    body{font-family:'Poppins',sans-serif;background:#f4f6f9}
-    header{background:linear-gradient(135deg,#004080,#0066cc);color:#fff;padding:70px 20px;text-align:center}
-    section{padding:70px 20px}
-    .section-title{font-family:'Playfair Display',serif;font-size:2.2rem;margin-bottom:40px;text-align:center;color:#004080}
-    .card{border:none;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.08);transition:.3s}
-    .card:hover{transform:translateY(-6px)}
-    .mpp-member img{width:130px;height:130px;object-fit:cover;margin:20px auto 10px}
-    .btn-main{background:#004080;color:#fff;font-weight:600;padding:12px 26px;border-radius:30px;text-decoration:none}
-    .btn-main:hover{background:#0066cc;color:#fff}
-    footer{background:#004080;color:#fff;padding:25px 10px;text-align:center;font-size:.9rem}
-    .flip{background:#004080;color:#fff;padding:15px;margin:6px;font-size:1.8rem;font-weight:700;border-radius:10px;min-width:70px;display:inline-block}
-    #backToTopBtn{position:fixed;bottom:30px;right:30px;background:#004080;color:#fff;border:none;border-radius:50%;padding:12px 16px;display:none;z-index:999}
+    body { font-family:'Poppins',sans-serif; background:#f4f6f9; }
+    header { background:linear-gradient(135deg,#004080,#0066cc); color:white; padding:70px 20px; text-align:center; }
+    header h1 { font-weight:700; font-size:2.6rem; }
+    header p { letter-spacing:1px; opacity:0.9; }
+
+    section { padding:70px 20px; }
+    .section-title { font-family:'Playfair Display',serif; font-size:2.2rem; margin-bottom:40px; text-align:center; color:#004080; }
+
+    .card { border:none; border-radius:16px; box-shadow:0 6px 18px rgba(0,0,0,0.08); transition:transform 0.3s; height:100%; }
+    .card:hover { transform:translateY(-6px); }
+    .mpp-member img { width:130px; height:130px; object-fit:cover; margin:20px auto 10px; }
+    .btn-main { background:#004080; color:white; font-weight:600; padding:12px 26px; border-radius:30px; text-decoration:none; }
+    .btn-main:hover { background:#0066cc; color:white; }
+    footer { background:#004080; color:white; padding:25px 10px; text-align:center; font-size:0.9rem; }
+
+    .flip { display:inline-block; background:#004080; color:white; padding:15px; margin:6px; font-size:1.8rem; font-weight:bold; border-radius:10px; min-width:70px; }
+    #backToTopBtn { position:fixed; bottom:30px; right:30px; background:#004080; color:white; border:none; border-radius:50%; padding:12px 16px; display:none; z-index:999; cursor:pointer; }
+    #backToTopBtn:hover { background:#0066cc; }
+
+    #disciplineForm select,#disciplineForm input { margin-bottom:15px; }
+    #msg { text-align:center; margin-top:10px; font-weight:bold; }
+    canvas { max-width:100%; margin: 20px 0; }
   </style>
 </head>
-
 <body>
 
 <!-- NAVBAR -->
@@ -51,44 +58,39 @@
   </div>
 </nav>
 
+<!-- HEADER -->
 <header id="home">
   <h1>PORTAL RASMI BDP SEMSIRA</h1>
   <p>BADAN DISIPLIN PELAJAR</p>
 </header>
 
 <!-- COUNTDOWN -->
-<section class="text-center" data-aos="fade-up">
+<section class="text-center">
   <h2 class="section-title">📅 Countdown STPM</h2>
-  <span class="flip" id="days">00</span>
-  <span class="flip" id="hours">00</span>
-  <span class="flip" id="minutes">00</span>
-  <span class="flip" id="seconds">00</span>
-</section>
-
-<!-- MOTO -->
-<section style="background:#eef4ff" data-aos="zoom-in">
-  <h2 class="section-title">🏫 Moto Rasmi BDP</h2>
-  <p class="text-center fs-3 fw-bold text-primary">
-    “DISIPLIN TERAS KEJAYAAN”
-  </p>
+  <div>
+    <span class="flip" id="days">00</span>
+    <span class="flip" id="hours">00</span>
+    <span class="flip" id="minutes">00</span>
+    <span class="flip" id="seconds">00</span>
+  </div>
 </section>
 
 <!-- MEMBERS -->
-<section id="members" data-aos="fade-up">
+<section id="members">
   <h2 class="section-title">AHLI JAWATANKUASA BDP</h2>
   <div class="container">
     <div class="row g-4 justify-content-center">
       <div class="col-md-3">
         <div class="card text-center p-3 mpp-member">
           <img src="images/nur.png" class="rounded-circle">
-          <h5 class="fw-bold">NUR ZAKWAN</h5>
+          <h5 class="fw-bold mt-2">NUR ZAKWAN</h5>
           <p>Pengerusi</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card text-center p-3 mpp-member">
           <img src="images/1.png" class="rounded-circle">
-          <h5 class="fw-bold">MUHAMMAD NUR ZAKWAN</h5>
+          <h5 class="fw-bold mt-2">MUHAMMAD NUR ZAKWAN</h5>
           <p>Timbalan Pengerusi</p>
         </div>
       </div>
@@ -97,40 +99,107 @@
 </section>
 
 <!-- RULES -->
-<section id="rules" style="background:#fff" data-aos="fade-up">
+<section id="rules" style="background:#ffffff;">
   <h2 class="section-title">📘 Peraturan & Tatatertib</h2>
   <div class="container">
     <div class="row g-4">
-      <div class="col-md-4"><div class="card p-4"><h5>Kesalahan Ringan</h5><ul><li>Lewat hadir</li><li>Pakaian tidak kemas</li></ul></div></div>
-      <div class="col-md-4"><div class="card p-4"><h5>Kesalahan Sederhana</h5><ul><li>Ponteng</li><li>Bising</li></ul></div></div>
-      <div class="col-md-4"><div class="card p-4"><h5>Kesalahan Berat</h5><ul><li>Buli</li><li>Vape</li></ul></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- STATISTIK -->
-<section data-aos="fade-up">
-  <h2 class="section-title">📊 Statistik Disiplin</h2>
-  <div class="container">
-    <div class="row text-center g-4">
-      <div class="col-md-4"><div class="card p-4"><h3>42</h3><p>Lewat Hadir</p></div></div>
-      <div class="col-md-4"><div class="card p-4"><h3>18</h3><p>Ponteng</p></div></div>
-      <div class="col-md-4"><div class="card p-4"><h3>3</h3><p>Kes Berat</p></div></div>
+      <div class="col-md-4">
+        <div class="card p-4">
+          <h5 class="fw-bold text-warning">Kesalahan Ringan</h5>
+          <ul>
+            <li>Lewat hadir</li>
+            <li>Pakaian tidak kemas</li>
+            <li>Tidak membawa buku</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-4">
+          <h5 class="fw-bold text-danger">Kesalahan Sederhana</h5>
+          <ul>
+            <li>Ponteng kelas</li>
+            <li>Bising</li>
+            <li>Tidak hormat guru</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-4">
+          <h5 class="fw-bold text-dark">Kesalahan Berat</h5>
+          <ul>
+            <li>Buli</li>
+            <li>Merokok / Vape</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- MISSION -->
-<section id="mission" data-aos="fade-up">
+<section id="mission">
   <h2 class="section-title">🎯 Misi & Visi</h2>
   <div class="container text-center">
-    <p>✔️ Memupuk disiplin ✔️ Penguatkuasaan adil ✔️ Pelajar bertanggungjawab</p>
-    <p class="fw-semibold mt-3">Melahirkan pelajar SEMSIRA berakhlak & berdisiplin.</p>
+    <p>
+      ✔️ Memupuk disiplin dan integriti pelajar<br>
+      ✔️ Membantu penguatkuasaan peraturan<br>
+      ✔️ Melahirkan pelajar bertanggungjawab
+    </p>
+    <p class="mt-4 fw-semibold">
+      Melahirkan pelajar SEMSIRA yang berdisiplin, berakhlak mulia dan menjadi contoh teladan.
+    </p>
     <a href="https://adam007-bit.github.io/PORTAL-E-ADUAN-MPP/" class="btn-main mt-4 d-inline-block">
-      ➡️ Portal Aduan
+      ➡️ Portal Aduan Pelajar
     </a>
   </div>
 </section>
+
+<!-- KEY IN KES DISIPLIN -->
+<section id="keyin">
+  <h2 class="section-title">📝 Key In Kes Disiplin</h2>
+  <div class="card p-4" style="max-width:500px;margin:auto;">
+    <form id="disciplineForm">
+      <select id="kelas" class="form-select" required>
+        <option value="">Pilih Kelas</option>
+        <option>5A</option><option>5B</option><option>5C</option>
+      </select>
+      <select id="kategori" class="form-select" required>
+        <option value="">Pilih Kategori</option>
+        <option>Ringan</option><option>Sederhana</option><option>Berat</option>
+      </select>
+      <input type="text" id="jenis" class="form-control" placeholder="Jenis Kesalahan" required>
+      <input type="text" id="nama" class="form-control" placeholder="Nama Pelajar" required>
+      <button type="submit" class="btn btn-primary w-100 mt-3">Hantar</button>
+    </form>
+    <p id="msg"></p>
+  </div>
+</section>
+
+<!-- ... Semua code sebelum statistik kekal ... -->
+
+<!-- STATISTIK -->
+<section id="stats">
+  <h2 class="section-title">📊 Statistik Kes Disiplin</h2>
+  <div class="card p-4" style="max-width:900px;margin:auto;">
+    
+    <!-- Filter Tarikh -->
+    <div class="mb-4 d-flex justify-content-center gap-3 flex-wrap">
+      <div>
+        <label>Pilih Bulan:</label>
+        <input type="month" id="monthFilter" class="form-control">
+      </div>
+      <div>
+        <label>Pilih Minggu:</label>
+        <input type="week" id="weekFilter" class="form-control">
+      </div>
+      <button id="resetFilter" class="btn btn-secondary mt-2">Reset</button>
+    </div>
+    
+    <canvas id="barChart"></canvas>
+    <canvas id="pieChart"></canvas>
+  </div>
+</section>
+
 
 <footer>
   © 2026 Badan Disiplin Pelajar SEMSIRA<br>
@@ -139,22 +208,238 @@
 
 <button id="backToTopBtn">↑</button>
 
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>AOS.init();</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-const eventDate=new Date("2026-01-13").getTime();
-setInterval(()=>{const n=new Date().getTime(),d=eventDate-n;
-days.innerText=Math.floor(d/864e5);
-hours.innerText=Math.floor(d/36e5)%24;
-minutes.innerText=Math.floor(d/6e4)%60;
-seconds.innerText=Math.floor(d/1e3)%60},1000);
+  AOS.init();
 
-const btn=document.getElementById("backToTopBtn");
-window.onscroll=()=>btn.style.display=window.scrollY>300?"block":"none";
-btn.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
+  // Countdown
+  const eventDate = new Date("2026-01-13").getTime();
+  setInterval(()=>{
+    const now = new Date().getTime();
+    const d = eventDate - now;
+    document.getElementById("days").innerText = Math.floor(d/86400000);
+    document.getElementById("hours").innerText = Math.floor(d/3600000)%24;
+    document.getElementById("minutes").innerText = Math.floor(d/60000)%60;
+    document.getElementById("seconds").innerText = Math.floor(d/1000)%60;
+  },1000);
+
+  // Back to top
+  const btn=document.getElementById("backToTopBtn");
+  window.onscroll=()=>btn.style.display=window.scrollY>300?"block":"none";
+  btn.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
 </script>
 
+<!-- Firebase Script -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+// 🔹 Ganti config ni dengan Firebase project kau
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Key in kes disiplin
+const form = document.getElementById("disciplineForm");
+const msg = document.getElementById("msg");
+form.addEventListener("submit", async e=>{
+  e.preventDefault();
+  try{
+    await addDoc(collection(db,"kesDisiplin"),{
+      kelas: document.getElementById("kelas").value,
+      kategori: document.getElementById("kategori").value,
+      jenis: document.getElementById("jenis").value,
+      nama: document.getElementById("nama").value,
+      tarikh: new Date()
+    });
+    msg.innerText="✅ Kes berjaya direkod!";
+    form.reset();
+  }catch(err){
+    msg.innerText="❌ Ralat berlaku!";
+    console.error(err);
+  }
+});
+
+// Statistik realtime
+const barCtx = document.getElementById("barChart").getContext("2d");
+const pieCtx = document.getElementById("pieChart").getContext("2d");
+let barChart, pieChart;
+
+onSnapshot(collection(db,"kesDisiplin"), snap=>{
+  const data = {};
+  let total = {Ringan:0,Sederhana:0,Berat:0};
+
+  snap.forEach(doc=>{
+    const d = doc.data();
+    const kls = d.kelas;
+    const kat = d.kategori;
+    if(!data[kls]) data[kls]={Ringan:0,Sederhana:0,Berat:0};
+    data[kls][kat]++;
+    total[kat]++;
+  });
+
+  // Bar Chart per kelas
+  const labels = Object.keys(data);
+  const ringan = labels.map(l=>data[l].Ringan);
+  const sederhana = labels.map(l=>data[l].Sederhana);
+  const berat = labels.map(l=>data[l].Berat);
+
+  if(barChart) barChart.destroy();
+  barChart = new Chart(barCtx,{
+    type:'bar',
+    data:{
+      labels:labels,
+      datasets:[
+        {label:'Ringan', data:ringan, backgroundColor:'#ffc107'},
+        {label:'Sederhana', data:sederhana, backgroundColor:'#dc3545'},
+        {label:'Berat', data:berat, backgroundColor:'#343a40'}
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{position:'top'}},
+      scales:{y:{beginAtZero:true}}
+    }
+  });
+
+  // Pie Chart overall
+  if(pieChart) pieChart.destroy();
+  pieChart = new Chart(pieCtx,{
+    type:'pie',
+    data:{
+      labels:['Ringan','Sederhana','Berat'],
+      datasets:[{data:[total.Ringan,total.Sederhana,total.Berat],backgroundColor:['#ffc107','#dc3545','#343a40']}]
+    },
+    options:{responsive:true}
+  });
+});
+  // Tambah di script Firebase & chart sebelum ini
+
+const monthFilter = document.getElementById("monthFilter");
+const weekFilter = document.getElementById("weekFilter");
+const resetFilter = document.getElementById("resetFilter");
+
+function filterData(docs){
+  let filtered = [];
+  const monthVal = monthFilter.value;
+  const weekVal = weekFilter.value;
+
+  docs.forEach(doc=>{
+    const data = doc.data();
+    const tarikh = data.tarikh.toDate(); // convert Firestore Timestamp ke Date
+
+    let include = true;
+
+    // Filter bulan
+    if(monthVal){
+      const [y,m] = monthVal.split('-').map(Number);
+      include = include && (tarikh.getFullYear() === y && tarikh.getMonth()+1 === m);
+    }
+
+    // Filter minggu
+    if(weekVal){
+      const [y,w] = weekVal.split('-W').map(Number);
+      const startOfWeek = new Date(y,0,1 + (w-1)*7);
+      const endOfWeek = new Date(startOfWeek);
+      endOfWeek.setDate(startOfWeek.getDate()+6);
+      include = include && (tarikh >= startOfWeek && tarikh <= endOfWeek);
+    }
+
+    if(include) filtered.push(data);
+  });
+
+  return filtered;
+}
+
+function updateCharts(filteredData){
+  const data = {};
+  let total = {Ringan:0,Sederhana:0,Berat:0};
+
+  filteredData.forEach(d=>{
+    const kls = d.kelas;
+    const kat = d.kategori;
+    if(!data[kls]) data[kls]={Ringan:0,Sederhana:0,Berat:0};
+    data[kls][kat]++;
+    total[kat]++;
+  });
+
+  const labels = Object.keys(data);
+  const ringan = labels.map(l=>data[l].Ringan);
+  const sederhana = labels.map(l=>data[l].Sederhana);
+  const berat = labels.map(l=>data[l].Berat);
+
+  if(barChart) barChart.destroy();
+  barChart = new Chart(barCtx,{
+    type:'bar',
+    data:{
+      labels:labels,
+      datasets:[
+        {label:'Ringan', data:ringan, backgroundColor:'#ffc107'},
+        {label:'Sederhana', data:sederhana, backgroundColor:'#dc3545'},
+        {label:'Berat', data:berat, backgroundColor:'#343a40'}
+      ]
+    },
+    options:{ responsive:true, plugins:{legend:{position:'top'}}, scales:{y:{beginAtZero:true}} }
+  });
+
+  if(pieChart) pieChart.destroy();
+  pieChart = new Chart(pieCtx,{
+    type:'pie',
+    data:{
+      labels:['Ringan','Sederhana','Berat'],
+      datasets:[{data:[total.Ringan,total.Sederhana,total.Berat],backgroundColor:['#ffc107','#dc3545','#343a40']}]
+    },
+    options:{responsive:true}
+  });
+}
+
+// Snapshot Firestore
+onSnapshot(collection(db,"kesDisiplin"), snap=>{
+  const docs = snap.docs;
+  const filtered = filterData(docs);
+  updateCharts(filtered);
+});
+
+// Event listener filter
+monthFilter.addEventListener("change",()=>{ 
+  weekFilter.value=''; // clear week
+  onSnapshot(collection(db,"kesDisiplin"), snap=>{
+    const docs = snap.docs;
+    const filtered = filterData(docs);
+    updateCharts(filtered);
+  });
+});
+
+weekFilter.addEventListener("change",()=>{ 
+  monthFilter.value=''; // clear month
+  onSnapshot(collection(db,"kesDisiplin"), snap=>{
+    const docs = snap.docs;
+    const filtered = filterData(docs);
+    updateCharts(filtered);
+  });
+});
+
+resetFilter.addEventListener("click",()=>{
+  monthFilter.value='';
+  weekFilter.value='';
+  onSnapshot(collection(db,"kesDisiplin"), snap=>{
+    const docs = snap.docs;
+    updateCharts(docs.map(d=>d.data()));
+  });
+});
+
+</script>
 </body>
 </html>
