@@ -32,8 +32,6 @@
     #backToTopBtn { position:fixed; bottom:30px; right:30px; background:#004080; color:white; border:none; border-radius:50%; padding:12px 16px; display:none; z-index:999; cursor:pointer; }
     #backToTopBtn:hover { background:#0066cc; }
 
-    #disciplineForm select,#disciplineForm input { margin-bottom:15px; }
-    #msg { text-align:center; margin-top:10px; font-weight:bold; }
     canvas { max-width:100%; margin: 20px 0; }
   </style>
 </head>
@@ -154,52 +152,14 @@
   </div>
 </section>
 
-<!-- KEY IN KES DISIPLIN -->
-<section id="keyin">
-  <h2 class="section-title">📝 Key In Kes Disiplin</h2>
-  <div class="card p-4" style="max-width:500px;margin:auto;">
-    <form id="disciplineForm">
-      <select id="kelas" class="form-select" required>
-        <option value="">Pilih Kelas</option>
-        <option>5A</option><option>5B</option><option>5C</option>
-      </select>
-      <select id="kategori" class="form-select" required>
-        <option value="">Pilih Kategori</option>
-        <option>Ringan</option><option>Sederhana</option><option>Berat</option>
-      </select>
-      <input type="text" id="jenis" class="form-control" placeholder="Jenis Kesalahan" required>
-      <input type="text" id="nama" class="form-control" placeholder="Nama Pelajar" required>
-      <button type="submit" class="btn btn-primary w-100 mt-3">Hantar</button>
-    </form>
-    <p id="msg"></p>
-  </div>
-</section>
-
-<!-- ... Semua code sebelum statistik kekal ... -->
-
 <!-- STATISTIK -->
 <section id="stats">
   <h2 class="section-title">📊 Statistik Kes Disiplin</h2>
   <div class="card p-4" style="max-width:900px;margin:auto;">
-    
-    <!-- Filter Tarikh -->
-    <div class="mb-4 d-flex justify-content-center gap-3 flex-wrap">
-      <div>
-        <label>Pilih Bulan:</label>
-        <input type="month" id="monthFilter" class="form-control">
-      </div>
-      <div>
-        <label>Pilih Minggu:</label>
-        <input type="week" id="weekFilter" class="form-control">
-      </div>
-      <button id="resetFilter" class="btn btn-secondary mt-2">Reset</button>
-    </div>
-    
     <canvas id="barChart"></canvas>
     <canvas id="pieChart"></canvas>
   </div>
 </section>
-
 
 <footer>
   © 2026 Badan Disiplin Pelajar SEMSIRA<br>
@@ -233,18 +193,11 @@
   btn.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
 </script>
 
-<!-- Firebase Script -->
+<!-- Firebase Statistik -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-  import {
-    getFirestore,
-    collection,
-    addDoc,
-    onSnapshot,
-    serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+  import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
 
-  // Firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyDn8SLqrdo4f6IyD1nUSKmKkkHFcjem7uM",
     authDomain: "bdp-semsira.firebaseapp.com",
@@ -254,45 +207,20 @@
     appId: "1:784687342761:web:f1fe10571b4852c010f5b8"
   };
 
-  // Init
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  /* =======================
-     KEY IN KES
-  ======================= */
-  const form = document.getElementById("disciplineForm");
-  const msg = document.getElementById("msg");
-
-  form.addEventListener("submit", async e => {
-    e.preventDefault();
-    await addDoc(collection(db, "kesDisiplin"), {
-      kelas: kelas.value,
-      kategori: kategori.value,
-      jenis: jenis.value,
-      nama: nama.value,
-      tarikh: serverTimestamp()
-    });
-    msg.innerText = "✅ Kes berjaya direkod";
-    form.reset();
-  });
-
-  /* =======================
-     STATISTIK
-  ======================= */
   const barCtx = document.getElementById("barChart");
   const pieCtx = document.getElementById("pieChart");
   let barChart, pieChart;
-  let allData = [];
 
-  function updateCharts(data) {
+  onSnapshot(collection(db,"kesDisiplin"), snap=>{
+    const data = snap.docs.map(d=>d.data());
     const kelasData = {};
     const total = { Ringan:0, Sederhana:0, Berat:0 };
 
-    data.forEach(d => {
-      if(!kelasData[d.kelas])
-        kelasData[d.kelas] = { Ringan:0, Sederhana:0, Berat:0 };
-
+    data.forEach(d=>{
+      if(!kelasData[d.kelas]) kelasData[d.kelas] = { Ringan:0, Sederhana:0, Berat:0 };
       kelasData[d.kelas][d.kategori]++;
       total[d.kategori]++;
     });
@@ -300,7 +228,7 @@
     const labels = Object.keys(kelasData);
 
     if(barChart) barChart.destroy();
-    barChart = new Chart(barCtx, {
+    barChart = new Chart(barCtx,{
       type:'bar',
       data:{
         labels,
@@ -314,47 +242,14 @@
     });
 
     if(pieChart) pieChart.destroy();
-    pieChart = new Chart(pieCtx, {
+    pieChart = new Chart(pieCtx,{
       type:'pie',
       data:{
         labels:['Ringan','Sederhana','Berat'],
         datasets:[{ data:[total.Ringan,total.Sederhana,total.Berat] }]
       }
     });
-  }
-
-  /* =======================
-     FILTER
-  ======================= */
-  const monthFilter = document.getElementById("monthFilter");
-  const weekFilter = document.getElementById("weekFilter");
-
-  function applyFilter(){
-    let filtered = [...allData];
-
-    if(monthFilter.value){
-      const [y,m] = monthFilter.value.split("-");
-      filtered = filtered.filter(d=>{
-        const t = d.tarikh.toDate();
-        return t.getFullYear()==y && t.getMonth()+1==m;
-      });
-    }
-
-    updateCharts(filtered);
-  }
-
-  monthFilter.onchange = ()=>{ weekFilter.value=""; applyFilter(); };
-  weekFilter.onchange = ()=>{ monthFilter.value=""; applyFilter(); };
-
-  /* =======================
-     REALTIME FIRESTORE
-  ======================= */
-  onSnapshot(collection(db,"kesDisiplin"), snap=>{
-    allData = snap.docs.map(d=>d.data());
-    applyFilter();
   });
-
-
 </script>
 </body>
 </html>
