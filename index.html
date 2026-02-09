@@ -4,424 +4,275 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Portal Rasmi BDP SEMSIRA</title>
+
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
- <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-   <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <style>
-    body { font-family: 'Poppins', sans-serif; background:#f8f9fa; }
-    header { background:#004080; color:white; padding:40px 20px; text-align:center; }
-    header h1 { font-weight:700; font-size:2.5rem; }
-    .mpp-section { padding:60px 20px; background:white; }
-    .mpp-member { border:none; border-radius:15px; box-shadow:0 4px 10px rgba(0,0,0,0.1); transition:transform 0.3s; opacity:0; text-align:center; }
-    .mpp-member:hover { transform:scale(1.05); }
-    .fade-in { animation: fadeInUp 1s forwards; }
-    @keyframes fadeInUp {
-      from { opacity:0; transform:translateY(40px); }
-      to { opacity:1; transform:translateY(0); }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f6f9;
     }
-    .misi-visi { padding:60px 20px; text-align:center; }
-    .misi-visi h2 { font-family:'Playfair Display', serif; font-size:2rem; margin-bottom:20px; }
-    .misi-visi p { font-size:1.1rem; }
-    .btn-aduan { display:inline-block; margin-top:30px; padding:12px 24px; background:#004080; color:white; font-weight:600; border-radius:8px; text-decoration:none; transition:0.3s; }
-    .btn-aduan:hover { background:#0066cc; }
 
-    /* Countdown */
-    .countdown-box {
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 30px;
-      border-radius: 12px;
-      background: white;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    header {
+      background: linear-gradient(135deg, #004080, #0066cc);
+      color: white;
+      padding: 70px 20px;
       text-align: center;
     }
-    .slogan {
-      font-size: 1.4rem;
+
+    header h1 {
       font-weight: 700;
-      color: #004080;
-      margin-top: 15px;
+      font-size: 2.6rem;
     }
+
+    header p {
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+
+    section {
+      padding: 70px 20px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      text-align: center;
+      color: #004080;
+    }
+
+    .card {
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .mpp-member img {
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      margin: 20px auto 10px;
+    }
+
+    .btn-main {
+      background: #004080;
+      color: white;
+      font-weight: 600;
+      padding: 12px 26px;
+      border-radius: 30px;
+      text-decoration: none;
+    }
+
+    .btn-main:hover {
+      background: #0066cc;
+      color: white;
+    }
+
+    footer {
+      background: #004080;
+      color: white;
+      padding: 25px 10px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Countdown */
     .flip {
       display: inline-block;
       background: #004080;
       color: white;
       padding: 15px;
-      margin: 5px;
-      font-size: 2rem;
+      margin: 6px;
+      font-size: 1.8rem;
       font-weight: bold;
-      border-radius: 8px;
+      border-radius: 10px;
       min-width: 70px;
-      text-align: center;
     }
-    .flip.animate {
-      animation: flip 0.6s ease;
-    }
-    @keyframes flip {
-      0% { transform: rotateX(0); }
-      50% { transform: rotateX(180deg); }
-      100% { transform: rotateX(360deg); }
-    }
+
+    /* Back to top */
     #backToTopBtn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #004080;
-  color: white;
-  padding: 12px 16px;
-  border: none;
-  border-radius: 50%;
-  font-size: 20px;
-  display: none;
-  z-index: 999;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: background 0.3s;
-}
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #004080;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 12px 16px;
+      display: none;
+      z-index: 999;
+    }
 
-#backToTopBtn:hover {
-  background-color: #0066cc;
-}
-    /* Dark Mode Styles */
-body.dark-mode {
-  background-color: #121212;
-  color: #f1f1f1;
-}
-
-body.dark-mode header {
-  background-color: #1e1e1e;
-  color: #ffffff;
-}
-
-body.dark-mode .mpp-section,
-body.dark-mode .countdown-box,
-body.dark-mode .misi-visi {
-  background-color: #1e1e1e;
-  color: #ffffff;
-}
-
-body.dark-mode .card {
-  background-color: #2c2c2c;
-  color: #ffffff;
-  box-shadow: 0 4px 10px rgba(255,255,255,0.05);
-}
-
-body.dark-mode .btn-aduan,
-body.dark-mode .btn-success {
-  background-color: #007bff;
-  border: none;
-}
-
-body.dark-mode .btn-aduan:hover,
-body.dark-mode .btn-success:hover {
-  background-color: #3399ff;
-}
-
-body.dark-mode .flip {
-  background-color: #333333;
-  color: #ffffff;
-}
-
-body.dark-mode nav.navbar {
-  background-color: #1c1c1c !important;
-}
-
-body.dark-mode #backToTopBtn {
-  background-color: #333;
-}
-
-body.dark-mode #backToTopBtn:hover {
-  background-color: #555;
-}
-
-/* Style for Dark Mode Toggle Button */
-#darkModeToggle {
-  font-size: 0.9rem;
-  padding: 6px 12px;
-  border-radius: 6px;
-}
-
-
+    #backToTopBtn:hover {
+      background: #0066cc;
+    }
   </style>
 </head>
+
 <body>
-<!-- Sticky Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #004080; position: sticky; top: 0; z-index: 1000;">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background:#004080;">
   <div class="container">
-    <a class="navbar-brand" href="#">bdp SEMSIRA</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand fw-bold" href="#">BDP SEMSIRA</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse" id="nav">
       <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#members">Members</a></li>
+        <li class="nav-item"><a class="nav-link" href="#rules">Rules</a></li>
+        <li class="nav-item"><a class="nav-link" href="#mission">Mission</a></li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#headerTitle">Home</a>
+          <a class="nav-link" target="_blank" href="https://adam007-bit.github.io/PORTAL-E-ADUAN-MPP/">Complaint</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#membersTitle">Members</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#missionTitle">Mission & Vision</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://adam007-bit.github.io/PORTAL-E-ADUAN-MPP/" target="_blank">Complaint Portal</a>
-        </li>
-        <li class="nav-item">
-  <button id="darkModeToggle" class="btn btn-sm btn-light ms-3">🌙 Dark Mode</button>
-</li>
-
       </ul>
     </div>
   </div>
 </nav>
-<header>
-  <h1 id="headerTitle">PORTAL RASMI BDP SEMSIRA</h1>
-  <p id="headerSub">BADAN DISPLIN PELAJAR</p>
-  <select id="languageSwitcher" class="form-select w-auto d-inline mt-3">
-    <option value="ms">🇲🇾 BM</option>
-    <option value="en">🇬🇧 EN</option>
-    <option value="zh">🇨🇳 中文</option>
-  </select>
+
+<!-- HEADER -->
+<header id="home">
+  <h1>PORTAL RASMI BDP SEMSIRA</h1>
+  <p>BADAN DISIPLIN PELAJAR</p>
 </header>
 
-<!-- Countdown + Slogan -->
-<section class="countdown-box" data-aos="fade-up">
-  <h2>📅 Countdown Peperiksaan STPM</h2>
-  <div id="timer">
-    <span class="flip" id="days">00</span> Hari
-    <span class="flip" id="hours">00</span> Jam
-    <span class="flip" id="minutes">00</span> Minit
-    <span class="flip" id="seconds">00</span> Saat
-  </div>
-  <p class="slogan">#SS6 #STRIVEFOR4</p>
-  <a href="https://adam007-bit.github.io/PORTAL-STUDY-4.00/index.html" target="_blank" class="btn btn-success mt-3">📖 Jom Study Sekarang</a>
-</section>
-
-<!-- Ahli MPP -->
-<section class="mpp-section">
-  <h2 id="membersTitle" class="text-center mb-4">AHLI JAWATANKUASA BDP SEMSIRA</h2>
-  <div class="row justify-content-center g-4">
-    <div class="col-md-3">
-     <div class="card p-3 mpp-member" data-aos="zoom-in">
-        <img src="images/nur.png" class="card-img-top rounded-circle" alt="Pengerusi">
-        <div class="card-body">
-          <h5 class="card-title">NUR ZAKWAN</h5>
-          <p class="card-text"><b>Pengerusi</b></p>
-        </div>
-      </div>
-      </div>
-    <div class="col-md-3">
-     <div class="card p-3 mpp-member" data-aos="zoom-in">
-
-        <img src="images/1.png" class="card-img-top rounded-circle" alt="Timbalan Pengerusi">
-        <div class="card-body">
-          <h5 class="card-title">MUHAMMAD NUR ZAKWAN BIN MUHAMMAD HAFIZULLAH</h5>
-          <p class="card-text"><b>Timbalan Pengerusi</b></p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-    <div class="card p-3 mpp-member" data-aos="zoom-in">
-
-        <img src="images/2.png" class="card-img-top rounded-circle" alt="Setiausaha">
-        <div class="card-body">
-          <h5 class="card-title">NAME</h5>
-          <p class="card-text"><b>Setiausaha</b></p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-<div class="card p-3 mpp-member" data-aos="zoom-in">
-        <img src="images/3.png" class="card-img-top rounded-circle" alt="Bendahari">
-        <div class="card-body">
-          <h5 class="card-title">NAME</h5>
-          <p class="card-text"><b>Bendahari</b></p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-  <div class="card p-3 mpp-member" data-aos="zoom-in">
-        <img src="images/4.png" class="card-img-top rounded-circle" alt="Penolong Setiausaha">
-        <div class="card-body">
-          <h5 class="card-title">NAME</h5>
-          <p class="card-text"><b>Penolong Setiausaha</b></p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-    <div class="card p-3 mpp-member" data-aos="zoom-in">
-        <img src="images/5.png" class="card-img-top rounded-circle" alt="Penolong Bendahari">
-        <div class="card-body">
-          <h5 class="card-title">NAME</h5>
-          <p class="card-text"><b>Penolong Bendahari</b></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="text-center">
-    <a href="https://adam007-bit.github.io/PORTAL-E-ADUAN-MPP/" target="_blank" class="btn-aduan" id="portalBtn">➡️ Portal Aduan Pelajar</a>
+<!-- COUNTDOWN -->
+<section class="text-center">
+  <h2 class="section-title">📅 Countdown STPM</h2>
+  <div>
+    <span class="flip" id="days">00</span>
+    <span class="flip" id="hours">00</span>
+    <span class="flip" id="minutes">00</span>
+    <span class="flip" id="seconds">00</span>
   </div>
 </section>
-<!-- Peraturan & Tatatertib -->
-<section class="mpp-section" data-aos="fade-up">
-  <h2 class="text-center mb-4">📘 Peraturan & Tatatertib Pelajar</h2>
 
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="card p-3 h-100">
-        <h5>⚠️ Kesalahan Ringan</h5>
-        <ul>
-          <li>Lewat hadir ke sekolah</li>
-          <li>Tidak lengkap pakaian</li>
-          <li>Tidak membawa buku</li>
-        </ul>
-      </div>
-    </div>
+<!-- MEMBERS -->
+<section id="members">
+  <h2 class="section-title">AHLI JAWATANKUASA BDP</h2>
+  <div class="container">
+    <div class="row g-4 justify-content-center">
 
-    <div class="col-md-4">
-      <div class="card p-3 h-100">
-        <h5>🚨 Kesalahan Sederhana</h5>
-        <ul>
-          <li>Ponteng kelas</li>
-          <li>Bising dalam kelas</li>
-          <li>Tidak hormat guru</li>
-        </ul>
+      <div class="col-md-3">
+        <div class="card text-center p-3 mpp-member">
+          <img src="images/nur.png" class="rounded-circle">
+          <h5 class="fw-bold mt-2">NUR ZAKWAN</h5>
+          <p>Pengerusi</p>
+        </div>
       </div>
-    </div>
 
-    <div class="col-md-4">
-      <div class="card p-3 h-100">
-        <h5>⛔ Kesalahan Berat</h5>
-        <ul>
-          <li>Buli</li>
-          <li>Merokok / Vape</li>
-          
-        </ul>
+      <div class="col-md-3">
+        <div class="card text-center p-3 mpp-member">
+          <img src="images/1.png" class="rounded-circle">
+          <h5 class="fw-bold mt-2">MUHAMMAD NUR ZAKWAN</h5>
+          <p>Timbalan Pengerusi</p>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- Misi & Visi -->
-<section class="misi-visi" data-aos="fade-up">
-  <h2 id="missionTitle">🎯 Misi</h2>
- <p id="missionText">
-✔️ Memupuk budaya disiplin dan integriti dalam kalangan pelajar.<br>
-✔️ Membantu penguatkuasaan peraturan sekolah secara adil.<br>
-✔️ Mendidik pelajar supaya bertanggungjawab terhadap tingkah laku.<br>
-✔️ Mewujudkan suasana sekolah yang aman dan selamat.
-</p>
+<!-- RULES -->
+<section id="rules" style="background:#ffffff;">
+  <h2 class="section-title">📘 Peraturan & Tatatertib</h2>
+  <div class="container">
+    <div class="row g-4">
 
+      <div class="col-md-4">
+        <div class="card p-4">
+          <h5 class="fw-bold text-warning">Kesalahan Ringan</h5>
+          <ul>
+            <li>Lewat hadir</li>
+            <li>Pakaian tidak kemas</li>
+            <li>Tidak membawa buku</li>
+          </ul>
+        </div>
+      </div>
 
-  <h2 id="visionTitle" class="mt-5">🪶 Visi</h2>
-  <p id="visionText">
-Melahirkan pelajar SEMSIRA yang berdisiplin tinggi, berakhlak mulia, bertanggungjawab dan menjadi contoh teladan kepada warga sekolah serta masyarakat.
-  </p>
+      <div class="col-md-4">
+        <div class="card p-4">
+          <h5 class="fw-bold text-danger">Kesalahan Sederhana</h5>
+          <ul>
+            <li>Ponteng kelas</li>
+            <li>Bising</li>
+            <li>Tidak hormat guru</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card p-4">
+          <h5 class="fw-bold text-dark">Kesalahan Berat</h5>
+          <ul>
+            <li>Buli</li>
+            <li>Merokok / Vape</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
-<footer class="text-center p-4" style="background:#004080; color:white;">
-  <p class="mb-1">© 2026 Badan Disiplin Pelajar SEMSIRA</p>
-  <p class="mb-0" style="font-size:0.9rem;">
-    Semua aduan adalah sulit dan dirahsiakan
-  </p>
+
+<!-- MISSION -->
+<section id="mission">
+  <h2 class="section-title">🎯 Misi & Visi</h2>
+  <div class="container text-center">
+    <p>
+      ✔️ Memupuk disiplin dan integriti pelajar<br>
+      ✔️ Membantu penguatkuasaan peraturan<br>
+      ✔️ Melahirkan pelajar bertanggungjawab
+    </p>
+    <p class="mt-4 fw-semibold">
+      Melahirkan pelajar SEMSIRA yang berdisiplin, berakhlak mulia dan menjadi contoh teladan.
+    </p>
+
+    <a href="https://adam007-bit.github.io/PORTAL-E-ADUAN-MPP/" class="btn-main mt-4 d-inline-block">
+      ➡️ Portal Aduan Pelajar
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Badan Disiplin Pelajar SEMSIRA<br>
+  Semua aduan adalah sulit dan dirahsiakan
 </footer>
 
+<button id="backToTopBtn">↑</button>
+
 <script>
-  const eventDate = new Date("2026-01-13 08:00:00").getTime();
-
-  function updateFlip(id, newValue) {
-    const el = document.getElementById(id);
-    if (el.innerText !== newValue.toString()) {
-      el.innerText = newValue;
-      el.classList.remove("animate");
-      void el.offsetWidth;
-      el.classList.add("animate");
-    }
-  }
-
-  setInterval(() => {
+  const eventDate = new Date("2026-01-13").getTime();
+  setInterval(()=>{
     const now = new Date().getTime();
-    const distance = eventDate - now;
-    if (distance < 0) {
-      document.getElementById("timer").innerHTML = "⏰ Peperiksaan STPM sudah bermula!";
-      return;
-    }
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const d = eventDate - now;
+    document.getElementById("days").innerText = Math.floor(d/86400000);
+    document.getElementById("hours").innerText = Math.floor(d/3600000)%24;
+    document.getElementById("minutes").innerText = Math.floor(d/60000)%60;
+    document.getElementById("seconds").innerText = Math.floor(d/1000)%60;
+  },1000);
 
-    updateFlip("days", days);
-    updateFlip("hours", hours);
-    updateFlip("minutes", minutes);
-    updateFlip("seconds", seconds);
-  }, 1000);
-
-  // Animasi ahli MPP
-  window.addEventListener("load", () => {
-    document.querySelectorAll(".mpp-member").forEach((el,i)=>{
-      setTimeout(()=>{ el.classList.add("fade-in"); }, i*300);
-    });
-  });
-
-
-  const switcher = document.getElementById("languageSwitcher");
-  switcher.addEventListener("change", (e) => {
-    const lang = e.target.value;
-    const t = translations[lang];
-    if (!t) return;
-    document.getElementById("headerTitle").innerHTML = t.headerTitle;
-    document.getElementById("headerSub").innerHTML = t.headerSub;
-    document.getElementById("membersTitle").innerHTML = t.membersTitle;
-    document.getElementById("portalBtn").innerHTML = t.portalBtn;
-    document.getElementById("missionTitle").innerHTML = t.missionTitle;
-    document.getElementById("missionText").innerHTML = t.missionText;
-    document.getElementById("visionTitle").innerHTML = t.visionTitle;
-    document.getElementById("visionText").innerHTML = t.visionText;
-  });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
-  <script>
-  const backToTopBtn = document.getElementById("backToTopBtn");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      backToTopBtn.style.display = "block";
-    } else {
-      backToTopBtn.style.display = "none";
-    }
-  });
-
-  backToTopBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-</script>
-<script>
-  const toggleBtn = document.getElementById('darkModeToggle');
-
-  // Load saved theme
-  if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-mode');
-    toggleBtn.textContent = '☀️';
-  }
-
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    if (document.body.classList.contains('dark-mode')) {
-      toggleBtn.textContent = '☀️';
-      localStorage.setItem('theme', 'dark');
-    } else {
-      toggleBtn.textContent = '🌙';
-      localStorage.setItem('theme', 'light');
-    }
-  });
+  const btn=document.getElementById("backToTopBtn");
+  window.onscroll=()=>btn.style.display=window.scrollY>300?"block":"none";
+  btn.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
 </script>
 
-<button id="backToTopBtn" title="Kembali ke Atas">↑</button>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
